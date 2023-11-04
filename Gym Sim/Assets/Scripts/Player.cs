@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    static Player Instance;
-    //y
+    static public Player Instance;
+    
     public CharacterStats stats;
 
     private void Awake()
