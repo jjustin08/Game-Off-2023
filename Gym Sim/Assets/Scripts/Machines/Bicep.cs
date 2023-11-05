@@ -5,7 +5,7 @@ using UnityEngine.Rendering.Universal;
 
 public class Bicep : MonoBehaviour
 {
-    [SerializeField] private DungBell dungBell;
+    [SerializeField] private FollowMouse dungBell;
 
     
 }

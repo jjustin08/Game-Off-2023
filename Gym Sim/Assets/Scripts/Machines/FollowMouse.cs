@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DungBell : MonoBehaviour
+public class FollowMouse : MonoBehaviour
 {
     private bool clicking;
 
@@ -17,9 +17,9 @@ public class DungBell : MonoBehaviour
     }
     private void Update()
     {
-        if(clicking)
+        if (clicking)
         {
-            Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y , Camera.main.transform.position.z);
+            Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.transform.position.z);
             Vector3 newPos = Camera.main.ScreenToWorldPoint(mousePos);
 
             newPos.z = 0;
