@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     static public GameManager Instance;
 
-    private Machine selectedMachine;
+    private BaseMachine selectedMachine;
     [SerializeField] private GameObject playerCharacter;
 
     private void Awake()
@@ -14,18 +14,24 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    public void SelectMachine(Machine mac)
+    public void SelectMachine(BaseMachine mac)
     {
         selectedMachine = mac;
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)) 
+        if (selectedMachine != null)
         {
-            selectedMachine.EnterMachine();
-            playerCharacter.SetActive(false);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                selectedMachine.EnterMachine();
+                playerCharacter.SetActive(false);
+                selectedMachine = null;
+            }
+            
         }
+        
     }
 
 }

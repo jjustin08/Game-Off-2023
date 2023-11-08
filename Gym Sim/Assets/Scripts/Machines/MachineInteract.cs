@@ -15,22 +15,37 @@ public class MachineInteract : MonoBehaviour
     {
         boxCollider = GetComponent<BoxCollider>();
     }
+    private void Update()
+    {
+        //TODO change this later
+        if(Input.GetKeyDown(KeyCode.Space)) 
+        {
+            selected.SetActive(false);
+        }
+    }
 
 
-   
 
     private void OnTriggerEnter(Collider other)
     {
-        GameManager.Instance.SelectMachine(GetComponent<Machine>());
-        selected.SetActive(true);
+        if(other.gameObject.CompareTag("Player"))
+        {
+            GameManager.Instance.SelectMachine(GetComponent<BaseMachine>());
+            selected.SetActive(true);
+        }
+        
         // put inside somehwere o be the current selected machine
         // enable ui and make machine glow
     }
 
     private void OnTriggerExit(Collider other)
     {
-        GameManager.Instance.SelectMachine(null);
-        selected.SetActive(false);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            GameManager.Instance.SelectMachine(null);
+            selected.SetActive(false);
+        }
+      
         // unselect machine
     }
 

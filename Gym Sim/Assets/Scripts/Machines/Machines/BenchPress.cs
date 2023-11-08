@@ -1,13 +1,14 @@
 using UnityEngine;
 
-public class BenchPress : MonoBehaviour
+public class BenchPress : BaseMachine
 {
     [SerializeField] private Transform weightLeft;
     [SerializeField] private Transform weightRight;
     [SerializeField] private Transform bar;
     private Animator animator;
 
-    private float pushAmount = 0.5f;
+    private float pushAmount = 400.0f;
+    private float gravityAmount = -5.0f;
 
 
     private void Awake()
@@ -21,31 +22,43 @@ public class BenchPress : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(isActive)
         {
-            PushUpBarLeft();
+            weightLeft.GetComponent<Rigidbody>().AddForce(new Vector3(0, gravityAmount, 0));
+            weightRight.GetComponent<Rigidbody>().AddForce(new Vector3(0, gravityAmount, 0));
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                PushUpBarLeft();
+            }
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                PushUpBarRight();
+            }
         }
-        else if(Input.GetKeyDown(KeyCode.E))
-        {
-            PushUpBarRight();
-        }
+       
     }
 
     private void LateUpdate()
     {
-        ResetVelocity();
+        if(isActive) 
+        {
+            ResetVelocity();
+
+            
+        }
+       
     }
 
 
     private void PushUpBarLeft()
     {
-        weightLeft.GetComponent<Rigidbody>().AddForce(new Vector3(0, pushAmount*1000, 0));
+        weightLeft.GetComponent<Rigidbody>().AddForce(new Vector3(0, pushAmount, 0));
         //weightLeft.Translate(new Vector3(0, pushAmount, 0));
     }
     
     private void PushUpBarRight()
     {
-        weightRight.GetComponent<Rigidbody>().AddForce(new Vector3(0, pushAmount * 1000, 0));
+        weightRight.GetComponent<Rigidbody>().AddForce(new Vector3(0, pushAmount, 0));
         //weightRight.Translate(new Vector3(0, pushAmount, 0));
     }
 
