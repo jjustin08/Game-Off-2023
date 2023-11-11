@@ -2,14 +2,21 @@ using UnityEngine;
 
 public class BenchPress : BaseMachine
 {
-    [SerializeField] private Transform weightLeft;
-    [SerializeField] private Transform weightRight;
-    [SerializeField] private Transform bar;
+    [SerializeField] private Rigidbody weightLeft;
+    [SerializeField] private Rigidbody weightRight;
+    [SerializeField] private Rigidbody bar;
     private Animator animator;
 
     private float pushAmount = 400.0f;
     private float gravityAmount = -5.0f;
+    private float minHeight = 0f;
+    private float maxHeight = 0.5f;
 
+    private float gainHeight = 0.4f;
+    private float restHeight = 0.05f;
+
+    private bool gainAbleLeft = true;
+    private bool gainAbleRight = true;
 
     private void Awake()
     {
@@ -22,20 +29,67 @@ public class BenchPress : BaseMachine
     }
     private void Update()
     {
-        if(isActive)
+        if (isActive)
         {
-            weightLeft.GetComponent<Rigidbody>().AddForce(new Vector3(0, gravityAmount, 0));
-            weightRight.GetComponent<Rigidbody>().AddForce(new Vector3(0, gravityAmount, 0));
+            Controls();
+            GainsCheck();
+        }
+    }
+    private void GainsCheck()
+    {
+        if(weightLeft.transform.localPosition.y >= gainHeight && gainAbleLeft)
+        {
+            gainAbleLeft = false;
+            Player.Instance.GainLeftArm(1);
+
+        }
+        else if(weightLeft.transform.localPosition.y <= restHeight)
+        {
+            gainAbleLeft = true;
+
+        }
+        if(weightRight.transform.localPosition.y >= gainHeight && gainAbleRight)
+        {
+            gainAbleRight = false;
+            Player.Instance.GainRightArm(1);
+
+        }
+        else if (weightRight.transform.localPosition.y <= restHeight)
+        {
+            gainAbleRight = true;
+        }
+
+    }
+
+    private void Controls()
+    {
+        if (weightLeft.transform.localPosition.y <= maxHeight)
+        {
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 PushUpBarLeft();
             }
-            else if (Input.GetKeyDown(KeyCode.E))
+
+        }
+        if (weightLeft.transform.localPosition.y >= minHeight)
+        {
+            weightLeft.AddForce(new Vector3(0, gravityAmount, 0));
+        }
+
+        if (weightRight.transform.localPosition.y <= maxHeight)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 PushUpBarRight();
             }
+
         }
-       
+        if (weightRight.transform.localPosition.y >= minHeight)
+        {
+            weightRight.AddForce(new Vector3(0, gravityAmount, 0));
+        }
+
+        
     }
 
     private void LateUpdate()
@@ -43,29 +97,24 @@ public class BenchPress : BaseMachine
         if(isActive) 
         {
             ResetVelocity();
-
-            
         }
-       
     }
 
 
     private void PushUpBarLeft()
     {
-        weightLeft.GetComponent<Rigidbody>().AddForce(new Vector3(0, pushAmount, 0));
-        //weightLeft.Translate(new Vector3(0, pushAmount, 0));
+        weightLeft.AddForce(new Vector3(0, pushAmount, 0));
     }
     
     private void PushUpBarRight()
     {
-        weightRight.GetComponent<Rigidbody>().AddForce(new Vector3(0, pushAmount, 0));
-        //weightRight.Translate(new Vector3(0, pushAmount, 0));
+        weightRight.AddForce(new Vector3(0, pushAmount, 0));
     }
 
     private void ResetVelocity()
     {
-        weightLeft.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-        weightRight.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-        bar.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+        weightLeft.velocity = new Vector3(0, 0, 0);
+        weightRight.velocity = new Vector3(0, 0, 0);
+        bar.velocity = new Vector3(0, 0, 0);
     }
 }

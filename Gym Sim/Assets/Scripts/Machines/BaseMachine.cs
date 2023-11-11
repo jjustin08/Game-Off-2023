@@ -16,8 +16,14 @@ public class BaseMachine : MonoBehaviour
         Camera.SetActive(true);
         Character.SetActive(true);
         isActive = true;
-        // change camera's
 
-        // disable enable controlls
+        // disable enable controls
+    }
+
+    public void ExitMachine()
+    {
+        Camera.SetActive(false);
+        Character.SetActive(false);
+        isActive = false;
     }
 }

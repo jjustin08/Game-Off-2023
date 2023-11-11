@@ -7,11 +7,16 @@ public class GameManager : MonoBehaviour
     static public GameManager Instance;
 
     private BaseMachine selectedMachine;
+    private BaseMachine enteredMachine;
     [SerializeField] private GameObject playerCharacter;
 
     private void Awake()
     {
-        Instance = this;
+        if(GameManager.Instance == null)
+        {
+            Instance = this;
+        }
+        
     }
 
     public void SelectMachine(BaseMachine mac)
@@ -27,11 +32,21 @@ public class GameManager : MonoBehaviour
             {
                 selectedMachine.EnterMachine();
                 playerCharacter.SetActive(false);
+                enteredMachine = selectedMachine;
                 selectedMachine = null;
             }
-            
         }
-        
+        if (enteredMachine != null)
+        {
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                enteredMachine.ExitMachine();
+                playerCharacter.SetActive(true);
+                enteredMachine = null;
+            }
+        }
     }
+
+    
 
 }
