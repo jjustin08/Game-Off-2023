@@ -5,11 +5,10 @@ public class BenchPress : BaseMachine
     [SerializeField] private Rigidbody weightLeft;
     [SerializeField] private Rigidbody weightRight;
     [SerializeField] private Rigidbody bar;
-    private Animator animator;
 
     private float pushAmount = 400.0f;
     private float gravityAmount = -5.0f;
-    private float minHeight = 0f;
+    private float minHeight = 0.0f;
     private float maxHeight = 0.5f;
 
     private float gainHeight = 0.4f;
@@ -18,15 +17,7 @@ public class BenchPress : BaseMachine
     private bool gainAbleLeft = true;
     private bool gainAbleRight = true;
 
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
 
-    private void OnConnectedToServer()
-    {
-        animator.StopPlayback();
-    }
     private void Update()
     {
         if (isActive)

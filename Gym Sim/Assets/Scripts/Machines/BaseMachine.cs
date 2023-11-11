@@ -6,15 +6,14 @@ using UnityEngine;
 [RequireComponent(typeof(MachineInteract))]
 public class BaseMachine : MonoBehaviour
 {
-    [SerializeField] private GameObject Camera;
-    [SerializeField] private GameObject Character;
+    [SerializeField] private GameObject toActivate;
+
 
     protected bool isActive = false;
 
     public void EnterMachine()
     {
-        Camera.SetActive(true);
-        Character.SetActive(true);
+        toActivate.SetActive(true);
         isActive = true;
 
         // disable enable controls
@@ -22,8 +21,7 @@ public class BaseMachine : MonoBehaviour
 
     public void ExitMachine()
     {
-        Camera.SetActive(false);
-        Character.SetActive(false);
+        toActivate.SetActive(false);
         isActive = false;
     }
 }

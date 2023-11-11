@@ -26,9 +26,18 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (enteredMachine != null)
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                enteredMachine.ExitMachine();
+                playerCharacter.SetActive(true);
+                enteredMachine = null;
+            }
+        }
         if (selectedMachine != null)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 selectedMachine.EnterMachine();
                 playerCharacter.SetActive(false);
@@ -36,15 +45,8 @@ public class GameManager : MonoBehaviour
                 selectedMachine = null;
             }
         }
-        if (enteredMachine != null)
-        {
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
-                enteredMachine.ExitMachine();
-                playerCharacter.SetActive(true);
-                enteredMachine = null;
-            }
-        }
+        
+        // tab for tutorial
     }
 
     

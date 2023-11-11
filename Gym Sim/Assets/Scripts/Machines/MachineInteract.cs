@@ -18,7 +18,7 @@ public class MachineInteract : MonoBehaviour
     private void Update()
     {
         //TODO change this later
-        if(Input.GetKeyDown(KeyCode.Space)) 
+        if(Input.GetKeyDown(KeyCode.F)) 
         {
             selected.SetActive(false);
         }
