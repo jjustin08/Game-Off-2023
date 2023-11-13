@@ -11,13 +11,10 @@ public class Bicep : BaseMachine
 
     [SerializeField] private Transform startPos;
     [SerializeField] private Transform endPos;
-    [SerializeField] private float moveSpeed = 1.0f;
+    [SerializeField] private float moveSpeed = 5.0f;
 
     private float progress = 0f;
 
-
-    private float targetMax = 0.7f;
-    private float targetMin = 0.5f;
     private bool isRunning = false;
 
 
@@ -59,12 +56,7 @@ public class Bicep : BaseMachine
             }
             else
             {
-                if (progress >= targetMin && progress <= targetMax)
-                {
-                    print("good job");
-                }
-                // check if pointer is inside spot
-                // give gains
+                
             }
         }
     }
