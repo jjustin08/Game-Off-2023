@@ -8,6 +8,8 @@ public class SliderGame : MonoBehaviour
 {
     private UnityEngine.UI.Slider slider;
 
+    [SerializeField] private bool isLeft;
+
     [SerializeField] private RectTransform target;
     [SerializeField] private RectTransform container;
 
@@ -21,10 +23,21 @@ public class SliderGame : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if(isLeft)
         {
-            CheckIfInside();
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                CheckIfInside();
+            }
         }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                CheckIfInside();
+            }
+        }
+        
 
     }
     private void CheckIfInside()
@@ -41,7 +54,7 @@ public class SliderGame : MonoBehaviour
         }
         else
         {
-            MissTarget();
+            //MissTarget();
         }
     }
 
@@ -53,7 +66,7 @@ public class SliderGame : MonoBehaviour
 
         float percentage = ((xPosition - leftBoundary) / width) * 100f;
 
-        return percentage/ 100; // Clamp to the range [0, 100]
+        return percentage/ 100; 
     }
 
     private void HitTarget()
