@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class SquatRack : BaseMachine
 {
-    [SerializeField] private Transform rightFoot;
-    [SerializeField] private Transform leftFoot;
-    [SerializeField] private Transform head;
+    private BodyPosition playersBody;
+
+    private BodyPosition targetBody;
+
 
 
     private void CheckBodyPosture()
