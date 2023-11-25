@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BodyControls : MonoBehaviour
+public class BodyBlendControls : MonoBehaviour
 {
     private SkinnedMeshRenderer body;
 

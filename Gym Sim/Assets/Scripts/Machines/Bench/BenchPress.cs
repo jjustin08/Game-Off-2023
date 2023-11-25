@@ -31,7 +31,7 @@ public class BenchPress : BaseMachine
         if(weightLeft.transform.localPosition.y >= gainHeight && gainAbleLeft)
         {
             gainAbleLeft = false;
-            Player.Instance.GainLeftArm(1);
+            //Player.Instance.GainLeftArm(1);
 
         }
         else if(weightLeft.transform.localPosition.y <= restHeight)
@@ -42,7 +42,7 @@ public class BenchPress : BaseMachine
         if(weightRight.transform.localPosition.y >= gainHeight && gainAbleRight)
         {
             gainAbleRight = false;
-            Player.Instance.GainRightArm(1);
+            //Player.Instance.GainRightArm(1);
 
         }
         else if (weightRight.transform.localPosition.y <= restHeight)
