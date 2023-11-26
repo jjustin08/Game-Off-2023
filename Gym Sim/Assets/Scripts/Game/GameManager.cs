@@ -6,6 +6,10 @@ public class GameManager : MonoBehaviour
 {
     static public GameManager Instance;
 
+    [SerializeField]private GameObject pauseMenu;
+
+
+
     private BaseMachine selectedMachine;
     private BaseMachine enteredMachine;
     [SerializeField] private GameObject playerCharacter;
@@ -44,6 +48,22 @@ public class GameManager : MonoBehaviour
                 enteredMachine = selectedMachine;
                 selectedMachine = null;
             }
+        }
+
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(pauseMenu.active)
+            {
+                pauseMenu.SetActive(false); 
+                Time.timeScale = 1;
+            }
+            else
+            {
+                pauseMenu.SetActive(true);
+                Time.timeScale= 0;
+            }
+            
         }
         
         // tab for tutorial

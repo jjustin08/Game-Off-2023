@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField]private Rigidbody rb;
 
-    private float speed = 100;
+    private float speed = 10;
 
     private Vector3 startingPos;
 
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb.AddForce(force);
 
-        rb.transform.position = new Vector3(rb.transform.position.x, startingPos.y, rb.transform.position.z);
+        //rb.transform.position = new Vector3(rb.transform.position.x, startingPos.y, rb.transform.position.z);
 
         //transform.position = new Vector3(rb.transform.position.x, 0, rb.transform.position.z); ;
             //startingPos;
@@ -46,24 +46,25 @@ public class PlayerMovement : MonoBehaviour
 
     private void LateUpdate()
     {
-        //if (rb.velocity != Vector3.zero)
-        //{
-        //    Vector3 targetPosition = transform.position + rb.velocity;
-
-        //    // Calculate the rotation that smoothly interpolates towards the target direction.
-        //    Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
-
-        //    // Use Quaternion.Slerp to interpolate the rotation gradually.
-        //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 3 * Time.deltaTime);
-
-        //}
-
-
-        foreach (Rigidbody rigidbody in GetComponentsInChildren<Rigidbody>())
+        if (rb.velocity != Vector3.zero)
         {
-            rigidbody.velocity= rigidbody.velocity* 1 / 1.1f;
+            
+            Vector3 targetPosition = transform.position + rb.velocity;
+
+            // Calculate the rotation that smoothly interpolates towards the target direction.
+            Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
+
+            // Use Quaternion.Slerp to interpolate the rotation gradually.
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 3 * Time.deltaTime);
+
         }
-        //rb.velocity= rb.velocity * 1/1.1f;
+
+
+        //foreach (Rigidbody rigidbody in GetComponentsInChildren<Rigidbody>())
+        //{
+        //    rigidbody.velocity= rigidbody.velocity* 1 / 1.1f;
+        //}
+        rb.velocity= rb.velocity * 1/1.2f;
 
         //rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         //rb.transform.position = new Vector3(rb.transform.position.x, startingHeight, rb.transform.position.z);
