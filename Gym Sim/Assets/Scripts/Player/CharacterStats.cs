@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
-    private float weight;
+    private float weight = 100;
     private float weightMax = 250;
     //private float food;
     //private float steroids;
-    private int energy;
+    private int energy = 100;
+    private int energyMax = 100;
 
     //private float fat;
 
@@ -28,8 +29,16 @@ public class CharacterStats : MonoBehaviour
 
     [SerializeField] private BodyBlendControls bodyBlendControls;
 
-    public void CalculateChanges()
+    public void StartDay()
     {
+        energy = energyMax;
+    }
+
+
+
+    public void PushChanges()
+    {
+        float oldWeight = weight;
         CalculateWeight();
         if (weight <= weightMax)
         {
@@ -39,10 +48,15 @@ public class CharacterStats : MonoBehaviour
         {
             // whatever was not active decrease it
         }
+
+        //print(weight);
+        energy -= (int)weight - (int)oldWeight;
+        //print(energy);
     }
     private void CalculateWeight()
     {
-        weight = 100;
+        float baseWeight = 100;
+        weight = baseWeight;
         weight += leftArm;
         weight += rightArm;
         weight += leftLeg;

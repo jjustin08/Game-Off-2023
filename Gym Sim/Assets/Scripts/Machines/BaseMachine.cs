@@ -17,11 +17,13 @@ public class BaseMachine : MonoBehaviour
         toActivate.SetActive(true);
         isActive = true;
 
+
         // disable enable controls
     }
 
     public void ExitMachine()
     {
+        Player.Instance.GetCharacterStats().PushChanges();
         toActivate.SetActive(false);
         isActive = false;
     }

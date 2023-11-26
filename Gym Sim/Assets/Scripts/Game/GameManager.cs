@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         }
         if (selectedMachine != null)
         {
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F) && Player.Instance.GetCharacterStats().HasEnoughEnergy(1))
             {
                 selectedMachine.EnterMachine();
                 playerCharacter.SetActive(false);

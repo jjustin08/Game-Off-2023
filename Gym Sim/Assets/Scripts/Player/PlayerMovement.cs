@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody rb;
+    [SerializeField]private Rigidbody rb;
 
-    private float speed = 10;
+    private float speed = 100;
 
-    private void Awake()
+    private Vector3 startingPos;
+
+    private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        startingPos = rb.transform.position;
     }
     private void Update()
     {
@@ -35,22 +37,35 @@ public class PlayerMovement : MonoBehaviour
         Vector3 force = direction.normalized* speed;
 
         rb.AddForce(force);
+
+        rb.transform.position = new Vector3(rb.transform.position.x, startingPos.y, rb.transform.position.z);
+
+        //transform.position = new Vector3(rb.transform.position.x, 0, rb.transform.position.z); ;
+            //startingPos;
     }
 
     private void LateUpdate()
     {
-        if(rb.velocity != Vector3.zero) 
+        //if (rb.velocity != Vector3.zero)
+        //{
+        //    Vector3 targetPosition = transform.position + rb.velocity;
+
+        //    // Calculate the rotation that smoothly interpolates towards the target direction.
+        //    Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
+
+        //    // Use Quaternion.Slerp to interpolate the rotation gradually.
+        //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 3 * Time.deltaTime);
+
+        //}
+
+
+        foreach (Rigidbody rigidbody in GetComponentsInChildren<Rigidbody>())
         {
-            Vector3 targetPosition = transform.position + rb.velocity;
-
-            // Calculate the rotation that smoothly interpolates towards the target direction.
-            Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
-
-            // Use Quaternion.Slerp to interpolate the rotation gradually.
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 3 * Time.deltaTime);
-
+            rigidbody.velocity= rigidbody.velocity* 1 / 1.1f;
         }
+        //rb.velocity= rb.velocity * 1/1.1f;
 
-        rb.velocity= rb.velocity * 1/1.1f;
+        //rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        //rb.transform.position = new Vector3(rb.transform.position.x, startingHeight, rb.transform.position.z);
     }
 }
