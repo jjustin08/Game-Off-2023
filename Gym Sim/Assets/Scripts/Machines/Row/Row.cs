@@ -15,7 +15,7 @@ public class Row : BaseMachine
     private float pullAmount = 0.1f;
     private float resetSpeed = 0.001f;
     private float targetAmount = 0.728f;
-    private float ResistanceAmount = 5f;
+    private float ResistanceAmount = 2f;
     private void Update()
     {
         if(isActive)

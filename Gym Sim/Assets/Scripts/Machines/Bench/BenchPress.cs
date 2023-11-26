@@ -1,7 +1,13 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BenchPress : BaseMachine
 {
+    [SerializeField] private Slider leftBar;
+    [SerializeField] private Slider rightBar;
+
+
+
     [SerializeField] private Rigidbody weightLeft;
     [SerializeField] private Rigidbody weightRight;
     [SerializeField] private Rigidbody bar;
@@ -24,7 +30,18 @@ public class BenchPress : BaseMachine
         {
             Controls();
             GainsCheck();
+
+            UIUpdate();
         }
+    }
+
+    private void UIUpdate()
+    {
+        float LeftPercent = weightLeft.transform.localPosition.y / maxHeight;
+        float rightPercent = weightRight.transform.localPosition.y / maxHeight;
+
+        leftBar.value = LeftPercent;
+        rightBar.value = rightPercent;
     }
     private void GainsCheck()
     {
