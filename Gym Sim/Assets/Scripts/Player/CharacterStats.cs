@@ -49,9 +49,7 @@ public class CharacterStats : MonoBehaviour
             // whatever was not active decrease it
         }
 
-        //print(weight);
         energy -= (int)weight - (int)oldWeight;
-        //print(energy);
     }
     private void CalculateWeight()
     {
