@@ -23,6 +23,15 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void UnPausedGame()
+    {
+        if (pauseMenu.active)
+        {
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1;
+        }
+    }
+
     public void SelectMachine(BaseMachine mac)
     {
         selectedMachine = mac;
