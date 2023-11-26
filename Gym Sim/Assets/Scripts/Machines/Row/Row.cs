@@ -14,6 +14,8 @@ public class Row : BaseMachine
 
     private float pullAmount = 0.1f;
     private float resetSpeed = 0.001f;
+    private float targetAmount = 0.728f;
+    private float ResistanceAmount = 5f;
     private void Update()
     {
         if(isActive)
@@ -45,10 +47,11 @@ public class Row : BaseMachine
         newPos.z = 0;
         character.localPosition = newPos;
 
-        slider.value -= resetSpeed * (slider.value * 2);
+        slider.value -= resetSpeed * (slider.value * ResistanceAmount);
 
-        if (slider.value >= 0.70f)
+        if (slider.value >= targetAmount)
         {
+            print("hello jacvob");
             isReseting = true;
         }
         if (isReseting)

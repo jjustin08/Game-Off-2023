@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     static public GameManager Instance;
 
     [SerializeField]private GameObject pauseMenu;
+    [SerializeField]private InGameUI inGameUI;
 
 
 
@@ -23,6 +24,10 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public InGameUI GetInGameUI()
+    {
+        return inGameUI;
+    }
     public void UnPausedGame()
     {
         if (pauseMenu.active)
