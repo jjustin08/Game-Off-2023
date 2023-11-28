@@ -12,12 +12,12 @@ public class BenchPress : BaseMachine
     [SerializeField] private Rigidbody weightRight;
     [SerializeField] private Rigidbody bar;
 
-    private float pushAmount = 400.0f;
-    private float gravityAmount = -5.0f;
-    private float minHeight = 0.0f;
-    private float maxHeight = 0.5f;
+    private float pushAmount = 200.0f;
+    private float gravityAmount = -3.0f;
+    private float minHeight = 0.045f;
+    private float maxHeight = 0.16f;
 
-    private float gainHeight = 0.4f;
+    private float gainHeight = 0.2f;
     private float restHeight = 0.05f;
 
     private bool gainAbleLeft = true;
@@ -37,8 +37,10 @@ public class BenchPress : BaseMachine
 
     private void UIUpdate()
     {
-        float LeftPercent = weightLeft.transform.localPosition.y / maxHeight;
-        float rightPercent = weightRight.transform.localPosition.y / maxHeight;
+        float LeftPercent = (weightLeft.transform.localPosition.y - minHeight) / maxHeight;
+        float rightPercent = (weightRight.transform.localPosition.y - minHeight) / maxHeight;
+
+
 
         leftBar.value = LeftPercent;
         rightBar.value = rightPercent;
@@ -81,6 +83,7 @@ public class BenchPress : BaseMachine
         }
         if (weightLeft.transform.localPosition.y >= minHeight)
         {
+            
             weightLeft.AddForce(new Vector3(0, gravityAmount, 0));
         }
 
