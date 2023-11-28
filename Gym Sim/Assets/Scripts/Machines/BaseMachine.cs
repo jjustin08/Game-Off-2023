@@ -7,6 +7,7 @@ using UnityEngine;
 public class BaseMachine : MonoBehaviour
 {
     [SerializeField] private GameObject toActivate;
+    [SerializeField] private GameObject toDeActivate;
 
 
     protected bool isActive = false;
@@ -16,7 +17,7 @@ public class BaseMachine : MonoBehaviour
     {
         toActivate.SetActive(true);
         isActive = true;
-
+        toDeActivate.SetActive(false);
 
         // disable enable controls
     }
@@ -26,5 +27,6 @@ public class BaseMachine : MonoBehaviour
         Player.Instance.GetCharacterStats().PushChanges();
         toActivate.SetActive(false);
         isActive = false;
+        toDeActivate.SetActive(true);
     }
 }
