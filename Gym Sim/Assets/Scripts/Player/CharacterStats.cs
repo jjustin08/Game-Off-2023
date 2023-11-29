@@ -97,6 +97,18 @@ public class CharacterStats : MonoBehaviour
         }
         
     }
+    
+    public void GainChest(float amount)
+    {
+        armsActive = true;
+        Chest += amount;
+        
+        foreach(BodyBlendControls body in bodyBlendControls)
+        {
+            body.SetChestSize(Chest);
+        }
+        
+    }
 
     #endregion
 

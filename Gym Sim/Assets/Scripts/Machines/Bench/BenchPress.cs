@@ -71,7 +71,7 @@ public class BenchPress : BaseMachine
         {
             gainAbleLeft = false;
             gainAbleRight = false;
-            Player.Instance.GetCharacterStats().GainArms(10);
+            Player.Instance.GetCharacterStats().GainChest(10);
         }
 
     }
