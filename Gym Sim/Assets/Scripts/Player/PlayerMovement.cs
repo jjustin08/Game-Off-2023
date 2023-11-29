@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]private Rigidbody rb;
+    [SerializeField] private Rigidbody rb;
+
+    [SerializeField] private Animator animator;
 
     private float speed = 10;
 
@@ -38,10 +41,14 @@ public class PlayerMovement : MonoBehaviour
 
         rb.AddForce(force);
 
-        //rb.transform.position = new Vector3(rb.transform.position.x, startingPos.y, rb.transform.position.z);
-
-        //transform.position = new Vector3(rb.transform.position.x, 0, rb.transform.position.z); ;
-            //startingPos;
+        if (math.abs(force.x) > 0 || math.abs(force.z) > 0)
+        {
+            animator.Play("Walking");
+        }
+        else
+        {
+            animator.Play("Idle");
+        }
     }
 
     private void LateUpdate()
