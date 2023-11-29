@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     static public Player Instance;
 
     private CharacterStats characterStats;
-    [SerializeField]private BodyBlendControls bodyBlendControls;
     
     private void Awake()
     {
@@ -22,9 +21,5 @@ public class Player : MonoBehaviour
         return characterStats;
     }
 
-    public BodyBlendControls GetBodyBlendControls() 
-    {
-        return bodyBlendControls;
-    }
    
 }

@@ -413,6 +413,24 @@ Transform:
   - {fileID: 1554111248}
   m_Father: {fileID: 1602745014}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &36842913 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8897367203044969316, guid: 008a5f96cacf9814c8787f56ddd07991,
+    type: 3}
+  m_PrefabInstance: {fileID: 87333535}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &36842916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36842913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ccf9ad9d2c3af498153d013894f2c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &40498810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2708,6 +2726,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1762325}
+    - targetCorrespondingSourceObject: {fileID: 8897367203044969316, guid: 008a5f96cacf9814c8787f56ddd07991,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 36842916}
   m_SourcePrefab: {fileID: 100100000, guid: 008a5f96cacf9814c8787f56ddd07991, type: 3}
 --- !u!4 &87333536 stripped
 Transform:
@@ -12842,7 +12864,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 741844aca4b26cb40b2479b2d0b615e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyBlendControls: {fileID: 0}
 --- !u!114 &1194914972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12855,7 +12876,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54df6476dc6d6ad4b87ee48a537f2626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bodyBlendControls: {fileID: 0}
+  bodyBlendControls:
+  - {fileID: 353813432}
+  - {fileID: 36842916}
 --- !u!1 &1199712988
 GameObject:
   m_ObjectHideFlags: 0
@@ -14583,7 +14606,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417001603}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000012910031, y: 0.90130323, z: -0.4331887, w: -0.000000026860933}
+  m_LocalRotation: {x: 5.3805865e-17, y: 0.90130323, z: -0.43318874, w: -1.7053463e-16}
   m_LocalPosition: {x: 4.0325036, y: 6.400489, z: 6.500245}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

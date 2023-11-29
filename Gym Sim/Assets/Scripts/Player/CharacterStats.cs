@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
@@ -14,10 +15,9 @@ public class CharacterStats : MonoBehaviour
     //private float fat;
 
 
-    private bool leftArmActive;
-    private float leftArm;
-    private bool rightArmActive;
-    private float rightArm;
+    private bool armsActive;
+    private float arms;
+
 
     private bool leftLegActive;
     private float leftLeg;
@@ -27,8 +27,12 @@ public class CharacterStats : MonoBehaviour
     private bool ChestActive;
     private float Chest;
 
-    [SerializeField] private BodyBlendControls bodyBlendControls;
 
+
+    [SerializeField]private List<BodyBlendControls> bodyBlendControls;
+
+
+    
     public void StartDay()
     {
         energy = energyMax;
@@ -55,11 +59,13 @@ public class CharacterStats : MonoBehaviour
     {
         float baseWeight = 100;
         weight = baseWeight;
-        weight += leftArm;
-        weight += rightArm;
+        weight += arms;
         weight += leftLeg;
         weight += rightLeg;
         weight += Chest;
+
+
+       // bodyBlendControls.SetArmSize(arms);
     }
 
     #region ENERGY
@@ -80,14 +86,16 @@ public class CharacterStats : MonoBehaviour
 
 
     #region BODY
-    public void GainLeftArm(float amount)
+    public void GainArms(float amount)
     {
-        leftArm += amount;
-    }
-
-    public void GainRightArm(float amount)
-    {
-        rightArm += amount;
+        armsActive = true;
+        arms += amount;
+        
+        foreach(BodyBlendControls body in bodyBlendControls)
+        {
+            body.SetArmSize(arms);
+        }
+        
     }
 
     #endregion

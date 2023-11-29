@@ -49,26 +49,29 @@ public class BenchPress : BaseMachine
     }
     private void GainsCheck()
     {
+        bool gain = false;
         if(weightLeft.transform.localPosition.y >= gainHeight && gainAbleLeft)
         {
-            gainAbleLeft = false;
-            Player.Instance.GetCharacterStats().GainLeftArm(1);
-
+            gain = true;
         }
         else if(weightLeft.transform.localPosition.y <= restHeight)
         {
             gainAbleLeft = true;
-
         }
-        if(weightRight.transform.localPosition.y >= gainHeight && gainAbleRight)
+        if(weightRight.transform.localPosition.y <= gainHeight && gainAbleRight && gain)
         {
-            gainAbleRight = false;
-            Player.Instance.GetCharacterStats().GainRightArm(1);
-
+            gain = false;
         }
         else if (weightRight.transform.localPosition.y <= restHeight)
         {
             gainAbleRight = true;
+        }
+
+        if(gain)
+        {
+            gainAbleLeft = false;
+            gainAbleRight = false;
+            Player.Instance.GetCharacterStats().GainArms(10);
         }
 
     }
