@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,13 +13,13 @@ public class BenchPress : BaseMachine
     [SerializeField] private Rigidbody weightRight;
     [SerializeField] private Rigidbody bar;
 
-    private float pushAmount = 200.0f;
-    private float gravityAmount = -3.0f;
-    private float minHeight = 0.045f;
-    private float maxHeight = 0.16f;
+    private float pushAmount = 500.0f;
+    private float gravityAmount = -6.0f;
+    private float minHeight = -0.15f;
+    private float maxHeight = 0.4f;
 
-    private float gainHeight = 0.2f;
-    private float restHeight = 0.05f;
+    private float gainHeight = 0.1f;
+    private float restHeight = -0.10f;
 
     private bool gainAbleLeft = true;
     private bool gainAbleRight = true;
@@ -37,8 +38,9 @@ public class BenchPress : BaseMachine
 
     private void UIUpdate()
     {
-        float LeftPercent = (weightLeft.transform.localPosition.y - minHeight) / maxHeight;
-        float rightPercent = (weightRight.transform.localPosition.y - minHeight) / maxHeight;
+        float LeftPercent = (weightLeft.transform.localPosition.y -minHeight) / maxHeight;
+        float rightPercent = (weightRight.transform.localPosition.y -minHeight ) / maxHeight;
+
 
 
 
