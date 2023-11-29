@@ -11,7 +11,7 @@ public class SliderGameCurved : MonoBehaviour
     [SerializeField] private RectTransform pointer;
     [SerializeField] private Transform pointerPin;
 
-    [SerializeField] private bool isLeft;
+    [SerializeField] private bool isRight;
 
     private float targetSize = 30f;
 
@@ -24,6 +24,17 @@ public class SliderGameCurved : MonoBehaviour
 
     private bool isActive = false;
 
+
+
+    private void Awake()
+    {
+        if(!isRight)
+        {
+            currentRotation = 90;
+            minRotation = 90;
+            maxRotation = 270;
+        }
+    }
     //TODO add a activation function
     private void Update()
     {
@@ -71,7 +82,7 @@ public class SliderGameCurved : MonoBehaviour
 
     private void Controls()
     {
-        if (isLeft)
+        if (isRight)
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
@@ -118,6 +129,11 @@ public class SliderGameCurved : MonoBehaviour
 
         float percentage = (mappedRotation / (maxRotation - minRotation)) * 100.0f;
 
+
+        if(!isRight)
+        {
+            percentage = 100 - percentage;
+        }
         return percentage;
     }
 
