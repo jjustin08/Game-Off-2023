@@ -18,11 +18,8 @@ public class CharacterStats : MonoBehaviour
     private bool armsActive;
     private float arms;
 
-
-    private bool leftLegActive;
-    private float leftLeg;
-    private bool rightLegActive;
-    private float rightLeg;
+    private bool legsActive;
+    private float legs;
 
     private bool ChestActive;
     private float Chest;
@@ -60,12 +57,9 @@ public class CharacterStats : MonoBehaviour
         float baseWeight = 100;
         weight = baseWeight;
         weight += arms;
-        weight += leftLeg;
-        weight += rightLeg;
+        weight += legs;
         weight += Chest;
 
-
-       // bodyBlendControls.SetArmSize(arms);
     }
 
     #region ENERGY
@@ -109,7 +103,48 @@ public class CharacterStats : MonoBehaviour
             body.SetChestSize(Chest);
         }
         
+    } 
+    
+    public void GainLegs(float amount)
+    {
+        armsActive = true;
+        legs += amount;
+        
+        foreach(BodyBlendControls body in bodyBlendControls)
+        {
+            body.SetChestSize(legs);
+        }
+        
     }
+
+    public void RemoveGains(float amount)
+    {
+        int randomNum = Random.Range(0, 5);
+
+        switch(randomNum) 
+        {
+            case 0:
+                GainArms(-5);
+                break;
+                case 1:
+                GainChest(-5);
+                break;
+                case 2:
+                GainLegs(-5);
+                                break;  
+                case 3:
+
+                                break;
+                case 4:
+
+                    break;
+
+        
+        
+        
+        }
+    }
+
 
     #endregion
 
