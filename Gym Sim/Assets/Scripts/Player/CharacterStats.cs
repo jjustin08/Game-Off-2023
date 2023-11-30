@@ -23,6 +23,10 @@ public class CharacterStats : MonoBehaviour
 
     private bool ChestActive;
     private float Chest;
+    
+    
+    private bool BackActive;
+    private float Back;
 
 
 
@@ -95,7 +99,7 @@ public class CharacterStats : MonoBehaviour
     
     public void GainChest(float amount)
     {
-        armsActive = true;
+        ChestActive = true;
         Chest += amount;
         
         foreach(BodyBlendControls body in bodyBlendControls)
@@ -107,12 +111,24 @@ public class CharacterStats : MonoBehaviour
     
     public void GainLegs(float amount)
     {
-        armsActive = true;
+        legsActive = true;
         legs += amount;
         
         foreach(BodyBlendControls body in bodyBlendControls)
         {
             body.SetChestSize(legs);
+        }
+        
+    }
+    
+    public void GainBack(float amount)
+    {
+        BackActive = true;
+        Back += amount;
+        
+        foreach(BodyBlendControls body in bodyBlendControls)
+        {
+            body.SetChestSize(Back);
         }
         
     }
@@ -133,7 +149,7 @@ public class CharacterStats : MonoBehaviour
                 GainLegs(-5);
                                 break;  
                 case 3:
-
+                GainBack(-5);
                                 break;
                 case 4:
 

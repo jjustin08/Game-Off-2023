@@ -6,9 +6,16 @@ using UnityEngine.UI;
 
 public class Row : BaseMachine
 {
+    // instead of moving a object
+    // I want to control the animator
+    // turn speed up when clicked button etc
+
+
     [SerializeField] private Slider slider;
 
     [SerializeField] private Transform character;
+
+    [SerializeField] private Animator animator;
 
     private bool isReseting;
 
