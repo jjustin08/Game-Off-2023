@@ -17,7 +17,7 @@ public class SliderGameCurved : MonoBehaviour
 
     float currentRotation = 90.0f;
 
-    float rotationSpeed = 0.5f;
+    float rotationSpeed = 0.6f;
 
     float minRotation = -90.0f;
     float maxRotation = 90.0f;
@@ -28,34 +28,30 @@ public class SliderGameCurved : MonoBehaviour
 
     private void Awake()
     {
-        if(!isRight)
+        if (isRight)
+        {
+            rotationSpeed *= -1;
+        }
+        if (!isRight)
         {
             currentRotation = 90;
             minRotation = 90;
             maxRotation = 270;
         }
     }
-    //TODO add a activation function
+    public void Activate()
+    {
+        isActive = true;
+
+        
+    }
     private void Update()
     {
-        if (!isActive && gameObject.active)
-        {
-            isActive = true;
-
-            ChangeTargetLocation(targetSize);
-        }
-        else if(isActive && !gameObject.active)
-        {
-            isActive = false;
-        }
-
-
         if(isActive)
         {
             Controls();
             GameUpdate();
         }
-
     }
 
     private void GameUpdate()
@@ -63,11 +59,23 @@ public class SliderGameCurved : MonoBehaviour
         // Calculate the new rotation angle based on the current angle and direction
         float newRotation = currentRotation + rotationSpeed;
 
-        // Check if the new rotation angle exceeds the limits (-45 to 45 degrees)
-        if (newRotation > maxRotation || newRotation < minRotation)
+        if (newRotation > maxRotation)
         {
             // Reverse the rotation direction
             rotationSpeed *= -1;
+            if (isRight)
+            {
+                isActive = false;
+            }
+        }
+        else if(newRotation < minRotation)
+        {
+            rotationSpeed *= -1;
+            if(!isRight)
+            {
+                isActive = false;
+            }
+            
         }
 
         // Update the current rotation angle
@@ -108,9 +116,9 @@ public class SliderGameCurved : MonoBehaviour
         float max = targetMax.fillAmount * 100;
         float min = targetMin.fillAmount * 100;
 
-        print("min: " + min);
-        print("roation: " + progress);
-        print("max: " + max);
+        //print("min: " + min);
+        //print("roation: " + progress);
+        //print("max: " + max);
 
 
         if (progress >= min && progress <= max)

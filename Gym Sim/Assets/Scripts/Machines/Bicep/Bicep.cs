@@ -1,26 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class Bicep : BaseMachine
 {
-    [SerializeField] private Transform weight;
-    [SerializeField] private UnityEngine.UI.Slider slider;
+    [SerializeField] private Animator animator;
+    [SerializeField] private SliderGameCurved SliderGameCurvedRight;
+    [SerializeField] private SliderGameCurved SliderGameCurvedLeft;
 
-    [SerializeField] private Transform startPos;
-    [SerializeField] private Transform endPos;
-    [SerializeField] private float moveSpeed = 5.0f;
 
-    private float progress = 0f;
+
+    override public void EnterMachine()
+    {
+        base.EnterMachine();
+
+        animator.Play(animator.GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 0);
+        animator.speed = 0;
+    }
+
+
 
     private void Update()
     {
         if (isActive)
         {
             Controls();
-            MachineUpdate();
         }
         else
         {
@@ -28,33 +35,28 @@ public class Bicep : BaseMachine
         }
     }
 
-    private void MachineUpdate()
-    {
-        if(isRunning)
-        {
-            
-            float t = Mathf.PingPong(Time.time * moveSpeed, 1.0f);
-            progress = t;
-            slider.value = progress;
-            weight.position = Vector3.Lerp(startPos.position, endPos.position, t);
-            
-        }
-    }
-
-
     private void Controls()
     {
-       if(Input.GetKeyDown(KeyCode.Space)) 
-        { 
-            if(!isRunning)
-            {
-                isRunning= true;
-            }
-            else
-            {
-                
-            }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            isActive = true;
+
+            animator.speed = 0.5f;
         }
     }
-   
+
+  
+
+
+    public void HalfWay()
+    {
+        SliderGameCurvedLeft.Activate();
+    }
+
+    public void StartOfAnim()
+    {
+
+        SliderGameCurvedRight.Activate();
+    }
+
 }

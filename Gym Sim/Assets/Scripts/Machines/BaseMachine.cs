@@ -13,7 +13,7 @@ public class BaseMachine : MonoBehaviour
     protected bool isActive = false;
     protected bool isRunning = false;
 
-    public void EnterMachine()
+    virtual public void EnterMachine()
     {
         toActivate.SetActive(true);
         isActive = true;
