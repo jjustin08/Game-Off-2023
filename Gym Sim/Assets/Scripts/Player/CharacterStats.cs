@@ -93,6 +93,7 @@ public class CharacterStats : MonoBehaviour
         
         foreach(BodyBlendControls body in bodyBlendControls)
         {
+            if(body!= null)
             body.SetArmSize(arms);
         }
         

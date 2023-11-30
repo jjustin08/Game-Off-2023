@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class SliderGameCurved : MonoBehaviour
 {
+    public Bicep bicep;
+
     [SerializeField] private Image targetMax;
     [SerializeField] private Image targetMin;
 
@@ -124,9 +126,11 @@ public class SliderGameCurved : MonoBehaviour
         if (progress >= min && progress <= max)
         {
             HitTarget();
+
         }
         else
         {
+            bicep.AddMiss();
             //MissTarget();
         }
     }
@@ -147,14 +151,23 @@ public class SliderGameCurved : MonoBehaviour
 
     private void HitTarget()
     {
-        
+
+
         // decreasing size of target
         if ((targetSize = targetSize / 1.2f) >= 1)
         {
+            if (bicep != null)
+            {
+                bicep.AddGain();
+            }
             ChangeTargetLocation(targetSize);
         }
         else
         {
+            if (bicep != null)
+            {
+                bicep.GameOver();
+            }
             //game over??
         }
 

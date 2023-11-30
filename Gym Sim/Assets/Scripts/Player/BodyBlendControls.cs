@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BodyBlendControls : MonoBehaviour
 {
-    private SkinnedMeshRenderer body;
+   private SkinnedMeshRenderer body;
 
     private static int chest = 0;
     private static int arms = 1;
@@ -13,18 +13,20 @@ public class BodyBlendControls : MonoBehaviour
     private static int legs = 4;
 
 
-    private void Awake()
+    private void Start()
     {
         body = GetComponent<SkinnedMeshRenderer>();
     }
 
     public void SetChestSize(float value)
     {
+        if(body!=null)
         body.SetBlendShapeWeight(chest, value);
     }
     
     public void SetArmSize(float value)
     {
+        if(body!=null)
         body.SetBlendShapeWeight(arms, value);
     }
     

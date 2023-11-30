@@ -42,15 +42,20 @@ public class GameManager : MonoBehaviour
         selectedMachine = mac;
     }
 
+    public void ExitMachine()
+    {
+        enteredMachine.ExitMachine();
+        playerCharacter.SetActive(true);
+        enteredMachine = null;
+    }
     private void Update()
     {
+
         if (enteredMachine != null)
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                enteredMachine.ExitMachine();
-                playerCharacter.SetActive(true);
-                enteredMachine = null;
+                ExitMachine();
             }
         }
         if (selectedMachine != null)
