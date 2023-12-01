@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.ShaderGraph;
@@ -6,10 +7,6 @@ using UnityEngine.UI;
 
 public class Row : BaseMachine
 {
-    // instead of moving a object
-    // I want to control the animator
-    // turn speed up when clicked button etc
-
 
     [SerializeField] private Slider slider;
 
@@ -23,11 +20,17 @@ public class Row : BaseMachine
     private float resetSpeed = 0.001f;
     private float targetAmount = 0.728f;
     private float ResistanceAmount = 2f;
+
+
+    private float animationCounter = 0f;
+
+
     private void Update()
     {
         if(isActive)
         {
-            if(Input.GetKeyDown(KeyCode.Space)) 
+            TutorialToggle();
+            if (Input.GetKeyDown(KeyCode.Space)) 
             {
                 isRunning = true;
             }
@@ -49,17 +52,29 @@ public class Row : BaseMachine
 
     private void MachineUpdate()
     {
-        Vector3 newPos = character.position;
-        newPos.x = -slider.value * 2;
-        newPos.z = 0;
-        character.localPosition = newPos;
+        AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+
+        if (Mathf.Approximately(animationCounter / 4.8f, slider.value))
+        {
+            animator.SetFloat("Speed", 0);
+        }
+        else if (animationCounter / 4.8f < slider.value)
+        {
+            animationCounter += Time.deltaTime;
+            animator.SetFloat("Speed", 0.5f);
+        }
+        else if (animationCounter / 4.8f > slider.value)
+        {
+            animationCounter -= Time.deltaTime;
+            animator.SetFloat("Speed", -0.5f);
+        }
 
         slider.value -= resetSpeed * (slider.value * ResistanceAmount);
 
-        if (slider.value >= targetAmount)
+        if (slider.value >= targetAmount && !isReseting)
         {
-            print("hello jacvob");
             isReseting = true;
+            Player.Instance.GetCharacterStats().GainBack(5);
         }
         if (isReseting)
         {
@@ -69,5 +84,21 @@ public class Row : BaseMachine
             }
             slider.value -= resetSpeed;
         }
+    }
+
+    public void StartAnim()
+    {
+        animationCounter = 0f;
+    }
+
+    public void MidAnim()
+    {
+        animator.SetFloat("Speed", -0.5f);
+    }
+    
+    public void EndAnim()
+    {
+
+
     }
 }

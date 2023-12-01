@@ -25,6 +25,8 @@ public class BenchPress : BaseMachine
     private bool gainAbleRight = true;
 
 
+    
+
     private void Update()
     {
         if (isActive)
@@ -78,6 +80,7 @@ public class BenchPress : BaseMachine
 
     private void Controls()
     {
+        TutorialToggle();
         if (weightLeft.transform.localPosition.y <= maxHeight)
         {
             if (Input.GetKeyDown(KeyCode.Q))

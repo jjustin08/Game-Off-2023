@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SliderGameCurved : MonoBehaviour
 {
-    public Bicep bicep;
+    public BaseMachine machine;
 
     [SerializeField] private Image targetMax;
     [SerializeField] private Image targetMin;
@@ -130,12 +130,12 @@ public class SliderGameCurved : MonoBehaviour
         }
         else
         {
-            bicep.AddMiss();
+            machine.AddMiss();
             //MissTarget();
         }
     }
 
-    private float CalculateRotationPercentage()
+    public float CalculateRotationPercentage()
     {
         float mappedRotation = currentRotation - minRotation;
 
@@ -156,17 +156,17 @@ public class SliderGameCurved : MonoBehaviour
         // decreasing size of target
         if ((targetSize = targetSize / 1.2f) >= 1)
         {
-            if (bicep != null)
+            if (machine != null)
             {
-                bicep.AddGain();
+                machine.AddGain();
             }
             ChangeTargetLocation(targetSize);
         }
         else
         {
-            if (bicep != null)
+            if (machine != null)
             {
-                bicep.GameOver();
+                machine.GameOver();
             }
             //game over??
         }

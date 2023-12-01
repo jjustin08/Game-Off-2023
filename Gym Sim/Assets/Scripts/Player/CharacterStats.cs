@@ -29,6 +29,10 @@ public class CharacterStats : MonoBehaviour
     private float Back;
 
 
+     private bool shouldersActive;
+    private float shoulders;
+
+
 
     [SerializeField]private List<BodyBlendControls> bodyBlendControls;
 
@@ -93,6 +97,19 @@ public class CharacterStats : MonoBehaviour
         {
             if(body!= null)
             body.SetArmSize(arms);
+        }
+        
+    }
+    
+    public void GainShoulders(float amount)
+    {
+        shouldersActive = true;
+        shoulders += amount;
+        
+        foreach(BodyBlendControls body in bodyBlendControls)
+        {
+            if(body!= null)
+            body.SetShouldersSize(shoulders);
         }
         
     }

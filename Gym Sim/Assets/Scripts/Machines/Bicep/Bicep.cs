@@ -11,10 +11,7 @@ public class Bicep : BaseMachine
     [SerializeField] private SliderGameCurved SliderGameCurvedRight;
     [SerializeField] private SliderGameCurved SliderGameCurvedLeft;
 
-    private int GainCount;
-    private int GainCountMax = 5;
-    private int MissCount;
-    private int MissCountMax = 5;
+
 
 
 
@@ -23,8 +20,8 @@ public class Bicep : BaseMachine
         base.EnterMachine();
 
 
-        SliderGameCurvedRight.bicep = this;
-        SliderGameCurvedLeft.bicep = this;
+        SliderGameCurvedRight.machine = this;
+        SliderGameCurvedLeft.machine = this;
 
         animator.Play(animator.GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 0);
         animator.speed = 0;
@@ -37,6 +34,7 @@ public class Bicep : BaseMachine
         if (isActive)
         {
             Controls();
+            TutorialToggle();
         }
         else
         {
@@ -54,33 +52,7 @@ public class Bicep : BaseMachine
         }
     }
 
-  public void AddGain()
-    {
-        GainCount++;
-        if(GainCount >= GainCountMax) 
-        {
-            GainCount = 0;
-            Player.Instance.GetCharacterStats().GainArms(5);
-        }
-    }
-
-    public void AddMiss()
-    {
-        MissCount++;
-
-        if(MissCount >= MissCountMax)
-        {
-            MissCount = 0;
-            GameOver();
-        }
-    }
-
-
-    public void GameOver()
-    {
-        GameManager.Instance.ExitMachine();
-        //TODO take energy
-    }
+ 
 
     public void HalfWay()
     {
