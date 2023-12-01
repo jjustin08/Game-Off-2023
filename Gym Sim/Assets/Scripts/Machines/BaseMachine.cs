@@ -10,6 +10,8 @@ public class BaseMachine : MonoBehaviour
     [SerializeField] private GameObject toActivate;
     [SerializeField] private GameObject toDeActivate;
     [SerializeField] protected GameObject tutorial;
+
+    
     
 
 
@@ -21,6 +23,11 @@ public class BaseMachine : MonoBehaviour
     protected int GainCountMax = 5;
     protected int MissCount;
     protected int MissCountMax = 5;
+
+    public void ExitMachineBro()
+    {
+        GameManager.Instance.ExitMachine();
+    }
 
     public void TutorialToggle()
     {

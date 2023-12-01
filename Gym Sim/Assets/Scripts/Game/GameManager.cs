@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         if (selectedMachine != null)
         {
             inGameUI.ToggleFKey(true);
-            if (Input.GetKeyDown(KeyCode.F) && Player.Instance.GetCharacterStats().HasEnoughEnergy(1))
+            if (Input.GetKeyDown(KeyCode.F) && (Player.Instance.GetCharacterStats().HasEnoughEnergy(1) || selectedMachine.GetComponent<Scale>() != null))
             {
                 selectedMachine.EnterMachine();
                 playerCharacter.SetActive(false);
