@@ -19,12 +19,12 @@ public class Bicep : BaseMachine
     {
         base.EnterMachine();
 
-
+        isActive = true;
         SliderGameCurvedRight.machine = this;
         SliderGameCurvedLeft.machine = this;
 
         animator.Play(animator.GetCurrentAnimatorStateInfo(0).fullPathHash, 0, 0);
-        animator.speed = 0;
+        animator.speed = 0.5f;
     }
 
 
@@ -33,7 +33,6 @@ public class Bicep : BaseMachine
     {
         if (isActive)
         {
-            Controls();
             TutorialToggle();
         }
         else
@@ -41,17 +40,6 @@ public class Bicep : BaseMachine
             isRunning = false;
         }
     }
-
-    private void Controls()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            isActive = true;
-
-            animator.speed = 0.5f;
-        }
-    }
-
  
 
     public void HalfWay()

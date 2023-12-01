@@ -21,16 +21,16 @@ public class SquatRack : BaseMachine
 
     private float animationCounter = 0f;
 
-
+    public override void EnterMachine()
+    {
+        base.EnterMachine();
+        isRunning = true;
+    }
     private void Update()
     {
         if (isActive)
         {
             TutorialToggle();
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                isRunning = true;
-            }
             if (isRunning)
             {
                 Controls();

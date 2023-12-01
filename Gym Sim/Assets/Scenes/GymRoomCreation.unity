@@ -19452,6 +19452,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bicep (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4242159033800933448, guid: f15c078b90319ee41ad72a27f51ea576,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: db78f1729c9ff0748a2bf274d207cf7f,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2256970935626283116, guid: f15c078b90319ee41ad72a27f51ea576, type: 3}

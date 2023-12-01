@@ -29,10 +29,6 @@ public class Row : BaseMachine
         if(isActive)
         {
             TutorialToggle();
-            if (Input.GetKeyDown(KeyCode.Space)) 
-            {
-                isRunning = true;
-            }
             if (isRunning)
             {
                 Controls();
@@ -47,6 +43,13 @@ public class Row : BaseMachine
         {
             slider.value += pullAmount;
         }
+    }
+
+    public override void EnterMachine()
+    {
+        base.EnterMachine();
+
+        isRunning = true;
     }
 
     private void MachineUpdate()
