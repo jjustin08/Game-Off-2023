@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     private BaseMachine enteredMachine;
     [SerializeField] private GameObject playerCharacter;
 
+
+    private int dayCount = 10;
+
     private void Awake()
     {
         if(GameManager.Instance == null)
@@ -88,6 +91,22 @@ public class GameManager : MonoBehaviour
         // tab for tutorial
     }
 
+
+    public void EndDay()
+    {
+        if(dayCount<= 0)
+        {
+            // do stuff to reset day/cutscene
+            // show end resutls
+        }
+        else
+        {
+            dayCount--;
+
+            inGameUI.SetDayCountText(dayCount);
+            Player.Instance.GetCharacterStats().StartDay();
+        }
+    }
     
 
 }

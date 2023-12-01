@@ -23,6 +23,7 @@ public class Scale : BaseMachine
 
     public void EndDay()
     {
-        // do stuff to reset day/cutscene
+        GameManager.Instance.EndDay();
+        
     }
 }
