@@ -80,6 +80,7 @@ public class BenchPress : BaseMachine
 
     private void Controls()
     {
+        TutorialToggle();
         if (weightLeft.transform.localPosition.y <= maxHeight)
         {
             if (Input.GetKeyDown(KeyCode.Q))

@@ -69,6 +69,7 @@ public class Shoulder : BaseMachine
     
     private void Controls()
     {
+        TutorialToggle();
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!isRunning)

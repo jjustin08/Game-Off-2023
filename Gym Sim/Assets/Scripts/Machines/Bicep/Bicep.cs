@@ -34,6 +34,7 @@ public class Bicep : BaseMachine
         if (isActive)
         {
             Controls();
+            TutorialToggle();
         }
         else
         {

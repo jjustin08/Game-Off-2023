@@ -29,7 +29,8 @@ public class Row : BaseMachine
     {
         if(isActive)
         {
-            if(Input.GetKeyDown(KeyCode.Space)) 
+            TutorialToggle();
+            if (Input.GetKeyDown(KeyCode.Space)) 
             {
                 isRunning = true;
             }
