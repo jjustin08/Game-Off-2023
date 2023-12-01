@@ -25,6 +25,8 @@ public class BenchPress : BaseMachine
     private bool gainAbleRight = true;
 
 
+    
+
     private void Update()
     {
         if (isActive)
