@@ -10,7 +10,6 @@ public class Row : BaseMachine
 
     [SerializeField] private Slider slider;
 
-    [SerializeField] private Transform character;
 
     [SerializeField] private Animator animator;
 

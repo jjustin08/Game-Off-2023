@@ -64,9 +64,11 @@ public class CharacterStats : MonoBehaviour
     {
         float baseWeight = 100;
         weight = baseWeight;
-        weight += arms;
-        weight += legs;
-        weight += Chest;
+        weight += arms /20;
+        weight += legs / 20;
+        weight += Chest / 20;
+        weight += Back / 20;
+        weight += shoulders / 20;
 
     }
 
