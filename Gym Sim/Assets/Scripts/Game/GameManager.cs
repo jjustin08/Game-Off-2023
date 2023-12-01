@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private BaseMachine selectedMachine;
     private BaseMachine enteredMachine;
     [SerializeField] private GameObject playerCharacter;
+    [SerializeField] private Contest contest;
 
 
     private int dayCount = 10;
@@ -100,15 +101,13 @@ public class GameManager : MonoBehaviour
 
     public void EndDay()
     {
-        if(dayCount<= 0)
+        dayCount--;
+        if (dayCount<= 0)
         {
-            // do stuff to reset day/cutscene
-            // show end resutls
+            contest.ActiveContest();
         }
         else
         {
-            dayCount--;
-
             inGameUI.SetDayCountText(dayCount);
             Player.Instance.GetCharacterStats().StartDay();
         }

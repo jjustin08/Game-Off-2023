@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
@@ -29,7 +30,7 @@ public class CharacterStats : MonoBehaviour
     private float Back;
 
 
-     private bool shouldersActive;
+    private bool shouldersActive;
     private float shoulders;
 
 
@@ -41,6 +42,34 @@ public class CharacterStats : MonoBehaviour
     public void StartDay()
     {
         energy = energyMax;
+
+        if (!armsActive)
+        {
+            arms -= 5;
+        }
+        if(!legsActive)
+        {
+            legs -= 5;
+        }
+        if(!ChestActive)
+        {
+            Chest -= 5;
+        }
+        if(!BackActive)
+        {
+            Back -= 5;
+        }
+        if(!shouldersActive)
+        {
+            shoulders-= 5;
+        }
+
+
+        armsActive = false;
+        legsActive = false;
+        ChestActive = false;
+        shouldersActive = false;
+        BackActive = false;
     }
 
 
@@ -187,5 +216,25 @@ public class CharacterStats : MonoBehaviour
 
 
     #endregion
+
+
+
+
+    public float GetArms()
+    {
+        return arms;
+    }public float GetLegs()
+    {
+        return legs;
+    }public float GetBack()
+    {
+        return Back;
+    }public float GetShoulders()
+    {
+        return shoulders;
+    }public float GetChest()
+    {
+        return Chest;
+    }
 
 }
