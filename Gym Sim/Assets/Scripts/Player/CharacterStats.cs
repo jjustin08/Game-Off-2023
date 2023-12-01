@@ -98,6 +98,9 @@ public class CharacterStats : MonoBehaviour
         weight += Chest / 20;
         weight += Back / 20;
         weight += shoulders / 20;
+
+        weight = (float)Mathf.Round(weight * 100f) / 100f;
+
         return weight;
     }
 
