@@ -60,7 +60,7 @@ public class CharacterStats : MonoBehaviour
 
         energy -= (int)weight - (int)oldWeight;
     }
-    private void CalculateWeight()
+    public float CalculateWeight()
     {
         float baseWeight = 100;
         weight = baseWeight;
@@ -69,7 +69,7 @@ public class CharacterStats : MonoBehaviour
         weight += Chest / 20;
         weight += Back / 20;
         weight += shoulders / 20;
-
+        return weight;
     }
 
     #region ENERGY
