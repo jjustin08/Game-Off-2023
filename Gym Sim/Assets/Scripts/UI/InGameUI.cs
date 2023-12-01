@@ -6,18 +6,15 @@ using UnityEngine.UI;
 public class InGameUI : MonoBehaviour
 {
     [SerializeField]private Slider energyBar;
-    [SerializeField]private Image EnergyImage;
 
     public void SetEnergyBarValue(float value)
     {
         energyBar.value = value;
     }
 
-
-    private void test()
+    private void Update()
     {
-        int bro = EnergyImage.fillOrigin;
-
-        print(bro);
+        SetEnergyBarValue(Player.Instance.GetCharacterStats().GetEnergy()/100);
     }
+
 }
