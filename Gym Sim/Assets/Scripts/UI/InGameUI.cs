@@ -8,6 +8,8 @@ public class InGameUI : MonoBehaviour
 {
     [SerializeField]private Slider energyBar;
     [SerializeField]private TextMeshProUGUI dayCountText;
+    [SerializeField]private GameObject fButton;
+
 
     public void SetEnergyBarValue(float value)
     {
@@ -22,6 +24,11 @@ public class InGameUI : MonoBehaviour
     private void Update()
     {
         SetEnergyBarValue(Player.Instance.GetCharacterStats().GetEnergy()/100);
+    }
+
+    public void ToggleFKey(bool toggle)
+    {
+        fButton.SetActive(toggle);
     }
 
 }

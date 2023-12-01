@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
+        
 
         if (enteredMachine != null)
         {
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
         }
         if (selectedMachine != null)
         {
+            inGameUI.ToggleFKey(true);
             if (Input.GetKeyDown(KeyCode.F) && Player.Instance.GetCharacterStats().HasEnoughEnergy(1))
             {
                 selectedMachine.EnterMachine();
@@ -70,6 +72,10 @@ public class GameManager : MonoBehaviour
                 enteredMachine = selectedMachine;
                 selectedMachine = null;
             }
+        }
+        else
+        {
+            inGameUI.ToggleFKey(false);
         }
 
 
