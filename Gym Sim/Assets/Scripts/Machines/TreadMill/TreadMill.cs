@@ -25,7 +25,7 @@ public class TreadMill : BaseMachine
 
             if (Counter >= CounterMax)
             {
-                print("hello");
+                
                 Counter = 0;
                 Player.Instance.GetCharacterStats().RemoveGains(5);
             }

@@ -9,7 +9,7 @@ public class CharacterStats : MonoBehaviour
     private float weightMax = 250;
     //private float food;
     //private float steroids;
-    private int energy = 100;
+    private float energy = 100;
     private int energyMax = 100;
 
     //private float fat;
@@ -64,14 +64,16 @@ public class CharacterStats : MonoBehaviour
     {
         float baseWeight = 100;
         weight = baseWeight;
-        weight += arms;
-        weight += legs;
-        weight += Chest;
+        weight += arms /20;
+        weight += legs / 20;
+        weight += Chest / 20;
+        weight += Back / 20;
+        weight += shoulders / 20;
 
     }
 
     #region ENERGY
-    public int GetEnergy()
+    public float GetEnergy()
     {
         return energy; 
     }
@@ -79,7 +81,7 @@ public class CharacterStats : MonoBehaviour
     {
         return energy >= amount;
     }
-    public void UseEnergy(int amount)
+    public void UseEnergy(float amount)
     {
         energy -= amount;
     }
@@ -90,6 +92,7 @@ public class CharacterStats : MonoBehaviour
     #region BODY
     public void GainArms(float amount)
     {
+        UseEnergy(amount);
         armsActive = true;
         arms += amount;
         
@@ -103,6 +106,7 @@ public class CharacterStats : MonoBehaviour
     
     public void GainShoulders(float amount)
     {
+        UseEnergy(amount);
         shouldersActive = true;
         shoulders += amount;
         
@@ -116,6 +120,7 @@ public class CharacterStats : MonoBehaviour
     
     public void GainChest(float amount)
     {
+        UseEnergy(amount);
         ChestActive = true;
         Chest += amount;
         
@@ -128,6 +133,7 @@ public class CharacterStats : MonoBehaviour
     
     public void GainLegs(float amount)
     {
+        UseEnergy(amount);
         legsActive = true;
         legs += amount;
         
@@ -140,6 +146,7 @@ public class CharacterStats : MonoBehaviour
     
     public void GainBack(float amount)
     {
+        UseEnergy(amount);
         BackActive = true;
         Back += amount;
         
