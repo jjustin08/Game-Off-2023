@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject playerCharacter;
     [SerializeField] private Contest contest;
 
+    private bool gameover = false;
+
 
     private int dayCount = 10;
 
@@ -46,6 +48,11 @@ public class GameManager : MonoBehaviour
         selectedMachine = mac;
     }
 
+    public void ExitEverything()
+    {
+        enteredMachine.ExitMachine();
+        enteredMachine = null;
+    }
     public void ExitMachine()
     {
         enteredMachine.ExitMachine();
@@ -54,7 +61,8 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        
+        if (gameover)
+            return;
 
         if (enteredMachine != null)
         {
@@ -95,7 +103,6 @@ public class GameManager : MonoBehaviour
             
         }
         
-        // tab for tutorial
     }
 
 
@@ -104,6 +111,7 @@ public class GameManager : MonoBehaviour
         dayCount--;
         if (dayCount<= 0)
         {
+            gameover = true;
             contest.ActiveContest();
         }
         else

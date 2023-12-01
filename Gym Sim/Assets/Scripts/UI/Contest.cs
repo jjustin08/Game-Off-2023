@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
+//using UnityEngine.UIElements;
 
 public class Contest : MonoBehaviour
 {
@@ -12,6 +12,12 @@ public class Contest : MonoBehaviour
     [SerializeField] private TextMeshProUGUI Score3;
     [SerializeField] private TextMeshProUGUI Score4;
     [SerializeField] private GameObject background;
+    [SerializeField] private GameObject button;
+
+    [SerializeField] private Image Sheet;
+    [SerializeField] private Sprite failSheet;
+    [SerializeField] private Sprite passSheet;
+    [SerializeField] private Sprite exelentSheet;
 
 
 
@@ -157,8 +163,28 @@ public class Contest : MonoBehaviour
                         counterMax += counterInterval;
 
                         totalScore = totalScore / 40;
+                        totalScore = (float)Mathf.Round(totalScore * 100f) / 100f;
                         TotalScore.gameObject.SetActive(true);
                         TotalScore.text = totalScore.ToString();
+
+
+
+                        if(totalScore > 8) 
+                        {
+                            Sheet.sprite = exelentSheet;
+                        }
+                        else if (totalScore > 5)
+                        {
+                            Sheet.sprite = passSheet;
+                        }
+                        else
+                        {
+                            Sheet.sprite = failSheet;
+                        }
+
+
+                        Player.Instance.SetVictoryAnimation(totalScore);
+                        button.SetActive(true); ;
                     }
                 }
             }

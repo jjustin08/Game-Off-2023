@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
+
+   
+
     private float weight = 100;
     private float weightMax = 250;
     //private float food;
@@ -37,7 +40,7 @@ public class CharacterStats : MonoBehaviour
 
     [SerializeField]private List<BodyBlendControls> bodyBlendControls;
 
-
+    
     
     public void StartDay()
     {
